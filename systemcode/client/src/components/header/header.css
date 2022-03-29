@@ -1,0 +1,33 @@
+.header {
+    margin-top: 60px;
+}
+
+.headerTitles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerTitle {
+    font-family: 'Cinzel', serif;
+    position: absolute;
+    font-size: 100px;
+    top: 17%;
+    color: #888
+}
+
+.headerSubtitle {
+    font-family: 'Shadows Into Light', cursive;
+    position: absolute;
+    font-size: 40px;
+    top: 30%;
+    color: yellowgreen;
+    font-weight: 700;
+}
+
+.headerImage {
+    width: 100%;
+    height: 850px;
+    margin-top: 130px;
+    object-fit: cover;
+}
