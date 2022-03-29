@@ -1,0 +1,70 @@
+//TEST AUTH POST REQUEST
+//POST ADDRESS localhost:5000/api/auth/register
+
+{
+    "username": "beanflicker",
+    "email": "flickingbeans@slippery.net",
+    "password": "flickingbeanssohardmyfingershurt"
+}
+
+{
+    "username": "bog_god",
+    "email": "yousucktoomuch@tohack.me",
+    "password": "mypasswordisdefinitelynotpassword"
+}
+
+{
+    "username": "hashnpepper",
+    "email": "nowyou@see.me",
+    "password": "imnotsounimaginativeicanteventhinkofapasswordthatisntpassword"
+}
+
+{
+    "username": "testicleoftime",
+    "email": "swingin@lowis.it",
+    "password": "batwing6969"
+}
+
+//TEST USERS UPDATE DETAILS
+//POST ADDRESS localhost:5000/api/users/[uid_value] (must be set to PUT)
+
+{
+    "id": "9e3f4957-8f4e-4225-9796-a59bab731313",
+    "username": "beanflickn",
+    "email": "flickingbeans@slippery.net",
+    "password": "flickingbeanssohardmyfingershurt"
+}
+
+//TEST POSTS ROUTE
+
+{
+    "username": "beanflickers",
+    "title": "Fisting for Britain?",
+    "description": "New bingo hall sport taking the country by storm!"
+}
+
+{
+    "username": "beanflickers",
+    "title": "Footing for Britain?",
+    "description": "Toes first - FEEL THE PAIN!"
+}
+
+{
+    "username": "beanflicking",
+    "title": "Will It Fit?",
+    "description": "The Biggest Most Uncomfortable Board Game For The Whole Family!!!"
+}
+
+{
+    "username": "beanflicking",
+    "title": "Push It Real Good!",
+    "description": "Insertion Based Game Show With Competitive Twerking!!!"
+}
+
+// TEST POSTS UPDATE
+
+{
+    "username": "beanflicking",
+    "title": "Dying Alone?",
+    "description": "This is a dummy description - like your tinder profile"
+}
