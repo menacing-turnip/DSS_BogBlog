@@ -5,6 +5,8 @@
 .singlePostWrapper {
     padding: 20px;
     padding-right: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 .singlePostImage {
@@ -20,6 +22,21 @@
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-size: 30px;
     font-weight: 700;
+}
+
+.singlePostTitleInput {
+    text-align: center;
+    margin: 10px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    border: none;
+    border-bottom: 1px solid;
+    color: gray;
+}
+
+.singlePostTitleInput:focus {
+    outline: none;
 }
 
 .singlePostEdit {
@@ -55,9 +72,32 @@
     line-height: 35px;
 }
 
-    .singlePostDescription::first-letter {
-        margin-left: 20px;
-        font-family: 'Shadows Into Light', cursive;
-        font-size: 50px;
-        font-weight: 600;
-    }
+.singlePostDescription::first-letter {
+    margin-left: 20px;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.singlePostDescriptionInput {
+    border: none;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 22px;
+    line-height: 35px;
+    color: gray;
+}
+
+.singlePostDescriptionInput:focus {
+    outline: none;
+}
+
+.singlePostButton {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+    margin-top: 20px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    align-self: flex-end;
+}

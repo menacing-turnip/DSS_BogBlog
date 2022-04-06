@@ -56,6 +56,7 @@ export default function Register() {
                 <button className="registerLoginButton">
                     <Link className="link" to="/login">Return to Login Screen</Link>
                 </button>
+                {/*IF WE SPECIFY THE ERROR IS DUE TO AN ACCOUNT ALREADY EXISTING WE LEAVE OURSELVES OPEN TO ACCOUNT ENUMERATION ATTACKS!*/}
                 {error && <span style={{ color: "red", marginTop: "10px" }}>Something went wrong!</span>}
             </div>
         </>

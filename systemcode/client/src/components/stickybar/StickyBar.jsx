@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom"
 import "./stickybar.css"
+import { useContext } from "react";
+import { Context } from "../../context/Context";
 
 export default function StickyBar() {
-    const user = false;
+    const { user, dispatch } = useContext(Context);
+
+    const handleLogout = () => {
+        dispatch({ type: "LOGOUT" });
+    };
     return (
         <div className="sticky">
             <div className="stickyLeft">
@@ -17,7 +23,7 @@ export default function StickyBar() {
                     <li className="stickyListItem"><Link className="link" to="/">ABOUT US</Link></li>
                     <li className="stickyListItem"><Link className="link" to="/">GET IN CONTACT</Link></li>
                     <li className="stickyListItem"><Link className="link" to="/write">WRITE A BLOG</Link></li>
-                    <li className="stickyListItem">
+                    <li className="stickyListItem" onClick={handleLogout}>
                         {user && "LOGOUT"}
                     </li>
                 </ul>
@@ -25,11 +31,19 @@ export default function StickyBar() {
             <div className="stickyRight">
                 {
                     user ? (
+                        user[0] !== null ?
+                        <Link to="/settings">
                         <img
                             className="stickyImage"
-                            src="https://images.pexels.com/photos/476/man-person-red-white.jpg?cs=srgb&dl=pexels-gratisography-476.jpg&fm=jpg"
+                            src={user[0].profilepic}
                             alt=""
-                        />
+                        /></Link> :
+                        <Link to="/settings">
+                        <img
+                            className="stickyImage"
+                            src=""
+                            alt=""
+                        /></Link>
                     ) : (
                         <ul className="stickyList">
                             <li className="stickyListItem">
