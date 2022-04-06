@@ -13,8 +13,8 @@ router.put("/:id", async (req, res) => {
             const { id } = req.params.id;
             //const { username, email, password } = req.body;
             const updatedUser = await pool.query(
-                "UPDATE usertable SET username = $1, email = $2, password = $3 WHERE uid = $4",
-                [req.body.username, req.body.email, req.body.password, req.body.uid]
+                "UPDATE usertable SET username = $1, email = $2, password = $3, profilepic = $4 WHERE uid = $5",
+                [req.body.username, req.body.email, req.body.password, req.body.profilepic, req.body.uid]
             );
             res.status(200).json(updatedUser);
         } catch (err) {

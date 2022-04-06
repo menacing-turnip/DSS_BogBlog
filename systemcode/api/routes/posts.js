@@ -3,11 +3,11 @@ const pool = require("../db");
 
 //CREATE NEW POST
 router.post("/", async (req, res) => {
-    const { title, description, username } = req.body;
+    const { title, description, username, photo } = req.body;
     try {
         const newPost = await pool.query(
-            "INSERT INTO posts (title, description, username, published_on) VALUES ($1, $2, $3, CURRENT_TIMESTAMP()) RETURNING *",
-            [title, description, username]
+            "INSERT INTO posts (title, description, username, photo, published_on) VALUES ($1, $2, $3, $4, CURRENT_TIMESTAMP) RETURNING *",
+            [title, description, username, photo]
         );
 
         res.status(200).json(newPost.rows);
@@ -24,10 +24,10 @@ router.put("/:id", async (req, res) => {
             if (post.rows[0].username === req.body.username) {
                 try {
                     const updatedPost = await pool.query(
-                        "UPDATE posts SET title = $1, description = $2, edited_on = CURRENT_TIMESTAMP() WHERE pid = $3",
+                        "UPDATE posts SET title = $1, description = $2, edited_on = CURRENT_TIMESTAMP WHERE pid = $3 RETURNING *",
                         [req.body.title, req.body.description, req.params.id]
                     );
-                    res.status(200).json(updatedPost);
+                    res.status(200).json(updatedPost.rows);
                 } catch (err) {
                     res.status(500).json(err);
                 }
@@ -79,11 +79,11 @@ router.get("/", async (req, res) => {
     try {
         let posts;
         if (username) {
-            posts = await pool.query("SELECT * FROM posts WHERE username = $1;", [username]);
+            posts = await pool.query("SELECT * FROM posts WHERE username = $1", [username]);
         } else if (category) {
-            posts = await pool.query("SELECT * FROM posts WHERE categories = $1;", [{ $in: [category] }]);
+            posts = await pool.query("SELECT * FROM posts WHERE categories = $1", [{ $in: [category] }]);
         } else {
-            posts = await pool.query("SELECT * FROM posts;");
+            posts = await pool.query("SELECT * FROM posts");
         }
         res.status(200).json(posts.rows);
     } catch (err) {

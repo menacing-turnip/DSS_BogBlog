@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
         const { username, email } = req.body;
 
         const newUser = await pool.query(
-            "INSERT INTO usertable (username, email, password, lastlogin) VALUES ($1, $2, $3, CURRENT_TIMESTAMP()) RETURNING *",
+            "INSERT INTO usertable (username, email, password, lastlogin) VALUES ($1, $2, $3, CURRENT_TIMESTAMP) RETURNING *",
             [username, email, hashedPass]
         );
 
