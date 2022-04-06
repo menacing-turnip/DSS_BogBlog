@@ -41,6 +41,6 @@
 
 {
     "username": "bog_god",
-    "title": "Living In A pologamous Relationship With Your Ex and Your Best Friend",
+    "title": "Living In A polygamous Relationship With Your Ex and Your Best Friend",
     "description": "This post has been updated! Its still really, really bad!"
 }
