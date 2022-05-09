@@ -11,6 +11,15 @@ router.post("/register", async (req, res) => {
         const hashedPass = await bcrypt.hash(req.body.password, salt);
 
         const { username, email } = req.body;
+         if (email.includes("'" ) || email.includes(";") || email.includes("\"") ||
+            email.includes("*") || email.includes("\\") || email.includes("%")){
+            return res.status(500).json(err);
+        }
+         if (username.includes("'" ) || username.includes(";") || username.includes("\"") ||
+            username.includes("*") || username.includes("\\") || username.includes("%")){
+            return res.status(500).json(err);
+        }
+
 
         const newUser = await pool.query(
             "INSERT INTO usertable (username, email, password, lastlogin) VALUES ($1, $2, $3, CURRENT_TIMESTAMP) RETURNING *",
@@ -28,6 +37,13 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
     try {
         const { username } = req.body;
+
+        if (username.includes("'" ) || username.includes(";") || username.includes("*") ||
+            username.includes("\"") || username.includes("\\") || username.includes("%")){
+            return res.status(401).json("Wrong Username or Password!");
+        }
+
+
         const user = await pool.query("SELECT * FROM usertable WHERE username = $1", [username]);
         //Protects against account enumeration by not specifying username or password being incorrect/not existing
         if (user.rows.length === 0) {

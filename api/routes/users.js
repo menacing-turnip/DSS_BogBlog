@@ -5,11 +5,20 @@ const bcrypt = require("bcrypt");
 //UPDATE
 router.put("/:id", async (req, res) => {
     if (req.body.uid === req.params.id) {
-        if (req.body.password) {
+
+        try {
+            if (req.body.password) {
             const salt = await bcrypt.genSalt(10);
             req.body.password = await bcrypt.hash(req.body.password, salt)
-        }
-        try {
+            }
+            if (req.body.email.includes("'" ) || req.body.email.includes(";") || req.body.email.includes("\"") ||
+            req.body.email.includes("*") || req.body.email.includes("\\") || req.body.email.includes("%")){
+            return res.status(500).json(err);
+            }
+            if (req.body.username.includes("'" ) || req.body.username.includes(";") || req.body.username.includes("\"") ||
+            req.body.username.includes("*") || req.body.username.includes("\\") || req.body.username.includes("%")){
+            return res.status(500).json(err);
+            }
             const { id } = req.params.id;
             //const { username, email, password } = req.body;
             const updatedUser = await pool.query(

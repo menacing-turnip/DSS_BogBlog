@@ -3,8 +3,46 @@ const pool = require("../db");
 
 //CREATE NEW POST
 router.post("/", async (req, res) => {
-    const { title, description, username, photo } = req.body;
+    let { title, description, username, photo } = req.body;
     try {
+        if (title.includes("'" )){
+            title =  title.replaceAll("'", "''")
+            }
+        if (title.includes(";" )){
+            title =  title.replaceAll(";", "\\;")
+            }
+        if (title.includes("\"" )){
+            title =  title.replaceAll("\"", "\"\"")
+            }
+        if (title.includes("_" )){
+            title =  title.replaceAll("_", "\\_")
+            }
+        if (title.includes("\\" )){
+            title =  title.replaceAll("\\", "\\\\")
+            }
+        if (title.includes("%" )){
+            title =  title.replaceAll("%", "\\%")
+            }
+
+        if (description.includes("'" )){
+            description =  description.replaceAll("'", "''")
+            }
+        if (description.includes(";" )){
+            description =  description.replaceAll(";", "\\;")
+            }
+        if (description.includes("\"" )){
+            description =  description.replaceAll("\"", "\"\"")
+            }
+        if (description.includes("_" )){
+            description =  description.replaceAll("_", "\\_")
+            }
+        if (description.includes("\\" )){
+            description =  description.replaceAll("\\", "\\\\")
+            }
+        if (description.includes("%" )){
+            description =  description.replaceAll("%", "\\%")
+            }
+
         const newPost = await pool.query(
             "INSERT INTO posts (title, description, username, photo, published_on) VALUES ($1, $2, $3, $4, CURRENT_TIMESTAMP) RETURNING *",
             [title, description, username, photo]
@@ -23,6 +61,46 @@ router.put("/:id", async (req, res) => {
             //console.log(post.rows[0].username);
             if (post.rows[0].username === req.body.username) {
                 try {
+
+                    if (req.body.title.includes("'" )){
+                        req.body.title =  req.body.title.replaceAll("'", "''")
+                        }
+                    if (req.body.title.includes(";" )){
+                        req.body.title =  req.body.title.replaceAll(";", "\\;")
+                        }
+                    if (req.body.title.includes("\"" )){
+                        req.body.title =  req.body.title.replaceAll("\"", "\"\"")
+                        }
+                    if (req.body.title.includes("_" )){
+                        req.body.title =  req.body.title.replaceAll("_", "\\_")
+                        }
+                    if (req.body.title.includes("\\" )){
+                        req.body.title =  req.body.title.replaceAll("\\", "\\\\")
+                        }
+                    if (req.body.title.includes("%" )){
+                        req.body.title =  req.body.title.replaceAll("%", "\\%")
+                        }
+
+
+                    if (req.body.description.includes("'" )){
+                        req.body.description =  req.body.description.replaceAll("'", "''")
+                        }
+                    if (req.body.description.includes(";" )){
+                        req.body.description =  req.body.description.replaceAll(";", "\\;")
+                        }
+                    if (req.body.description.includes("\"" )){
+                        req.body.description =  req.body.description.replaceAll("\"", "\"\"")
+                        }
+                    if (req.body.description.includes("_" )){
+                        req.body.description =  req.body.description.replaceAll("_", "\\_")
+                        }
+                    if (req.body.description.includes("\\" )){
+                        req.body.description =  req.body.description.replaceAll("\\", "\\\\")
+                        }
+                    if (req.body.description.includes("%" )){
+                        req.body.description =  req.body.description.replaceAll("%", "\\%")
+                        }
+
                     const updatedPost = await pool.query(
                         "UPDATE posts SET title = $1, description = $2, edited_on = CURRENT_TIMESTAMP WHERE pid = $3 RETURNING *",
                         [req.body.title, req.body.description, req.params.id]

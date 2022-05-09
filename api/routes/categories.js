@@ -4,7 +4,12 @@ const pool = require("../db");
 //CREATE NEW CATEGORY
 router.post("/", async (req, res) => {
     const { name } = req.body;
+
     try {
+        if (name.includes("'" ) || name.includes(";") || name.includes("\\") ||
+            name.includes("*") || name.includes("\"") || name.includes("%")){
+            return res.status(500).json(err);
+            }
         const newCategory = await pool.query(
             "INSERT INTO category (name) VALUES ($1) RETURNING *",
             [name]
