@@ -51,13 +51,22 @@
 
 .writeSubmit {
     position: absolute;
-    bottom: -70px;
+    bottom: -150px;
     right: 50%;
-    color: black;
     background-color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
     font-size: 30px;
     font-family: 'Shadows Into Light', cursive;
+}
+
+.writeSubmit:disabled {
+    cursor: not-allowed;
+}
+
+.writeRecaptcha {
+    position: absolute;
+    bottom: -80px;
+    right: 46%;
 }

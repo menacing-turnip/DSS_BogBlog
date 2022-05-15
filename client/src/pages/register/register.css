@@ -46,6 +46,11 @@
     background-color: transparent;
 }
 
+.registerButton:disabled {
+    cursor: not-allowed;
+}
+
+
 .registerLoginButton {
     font-family: 'Shadows Into Light', cursive;
     font-size: 30px;

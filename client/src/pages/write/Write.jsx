@@ -3,12 +3,23 @@ import { useContext } from "react";
 import { useState } from "react"
 import { Context } from "../../context/Context";
 import "./write.css"
+import Reaptcha from 'reaptcha'
 
 export default function Write() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [file, setFile] = useState(null);
     const { user } = useContext(Context);
+    const [verified, setVerified] = useState(false);
+
+    const onVerify = e => {
+        setVerified(true);
+    };
+
+    const onExpire = e => {
+        setVerified(false);
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,7 +84,8 @@ export default function Write() {
                             onChange={e => setDescription(e.target.value)}>
                         </textarea>
                     </div>
-                    <button className="writeSubmit" type="submit">Submit Post</button>
+                    <Reaptcha className ="writeRecaptcha" sitekey="6Lce2e0fAAAAADEwYnL-no4nWZjLwhW_eOgSQmF-" onVerify={onVerify} onExpire={onExpire} />
+                    <button className="writeSubmit" type="submit" disabled={!verified}>Submit Post</button>
                 </form>
             </div>
         </>

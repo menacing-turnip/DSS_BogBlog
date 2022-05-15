@@ -4,12 +4,22 @@ import { useRef } from "react";
 import { Link } from "react-router-dom"
 import { Context } from "../../context/Context";
 import "./login.css"
+import Reaptcha from 'reaptcha'
 
 export default function Login() {
     const userRef = useRef();
     const passwordRef = useRef();
     const { dispatch, isFetching } = useContext(Context);
     const [error, setError] = useState(false);
+    const [verified, setVerified] = useState(false);
+
+    const onVerify = e => {
+        setVerified(true);
+    };
+
+    const onExpire = e => {
+        setVerified(false);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,7 +47,8 @@ export default function Login() {
                     <input type="text" className="loginInput" placeholder="Enter username..." ref={userRef} />
                     <label>Password</label>
                     <input type="password" className="loginInput" placeholder="Enter password..." ref={passwordRef} />
-                    <button className="loginButton" type="submit" disabled={isFetching}>
+                    <Reaptcha sitekey="6Lce2e0fAAAAADEwYnL-no4nWZjLwhW_eOgSQmF-" onVerify={onVerify} onExpire={onExpire} />
+                    <button className="loginButton" type="submit" disabled={isFetching || !verified}>
                         Login
                     </button>
                     {/*DO NOT SPECIFY USERNAME/EMAIL AS INCORRECT INFORMATION TO MITIGATE ACCOUNT ENUMERATION*/}
