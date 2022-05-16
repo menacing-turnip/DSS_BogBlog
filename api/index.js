@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const corsGate = require('cors-gate');
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
@@ -17,13 +18,31 @@ const storage = multer.diskStorage({
     },
 });
 
+
 const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("File Succesfully Uploaded.");
 });
 
-app.use(cors());
+
+
+app.use(corsGate.originFallbackToReferrer());
+
+app.use(cors({
+    origin: ['http://localhost:3000'],
+    credentials: true
+}));
+
 app.use(express.json());
+
+app.use(corsGate({
+    strict: true,
+    allowSafe: true,
+    origin: 'http://localhost:5000'
+}));
+
+
+
 app.use("/images/", express.static(path.join(__dirname, "/images/")));
 
 app.use("/api/auth", authRoute);
