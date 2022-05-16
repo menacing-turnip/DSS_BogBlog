@@ -1,10 +1,29 @@
+import React from 'react';
 import { Link } from "react-router-dom"
 import "./stickybar.css"
 import { useContext } from "react";
 import { Context } from "../../context/Context";
-
 export default function StickyBar() {
     const { user, dispatch } = useContext(Context);
+
+    const Search = () => {
+        return <div>Hello World!</div>
+    }
+
+    // const SearchBar = () => {
+    //     <form action="/" method="get">
+    //         <label htmlFor="header-search">
+    //             <span className="visually-hidden">Search blog posts</span>
+    //         </label>
+    //         <input
+    //             type="text"
+    //             id="header-search"
+    //             placeholder="Search blog posts"
+    //             name="s"
+    //         />
+    //         <button type="submit">Search</button>
+    //     </form>
+    // }
 
     const handleLogout = () => {
         dispatch({ type: "LOGOUT" });
@@ -21,7 +40,7 @@ export default function StickyBar() {
                 <ul className="stickyList">
                     <li className="stickyListItem"><Link className="link" to="/">HOME</Link></li>
                     <li className="stickyListItem"><Link className="link" to="/">ABOUT US</Link></li>
-                    <li className="stickyListItem"><Link className="link" to="/">GET IN CONTACT</Link></li>
+                    <li className="stickyListItem"><Link className="link" to="/contact">GET IN CONTACT</Link></li>
                     <li className="stickyListItem"><Link className="link" to="/write">WRITE A BLOG</Link></li>
                     <li className="stickyListItem" onClick={handleLogout}>
                         {user && "LOGOUT"}
@@ -55,8 +74,12 @@ export default function StickyBar() {
                         </ul>   
                     )
                 }
-                
-                <i className="stickySearchIcon fa-solid fa-magnifying-glass"></i>
+
+
+                <div className="stickySearchIcon fa-solid fa-magnifying-glass"></div>
+
+
+
             </div>
         </div>
     )
