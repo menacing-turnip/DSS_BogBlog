@@ -8,8 +8,6 @@ const browserify = require('browserify-fs');
 
 export default function Contact() {
     const defaultValue = ""
-    // <img onError='alert("Hacked!")'; src='invalid.url.com' />
-    // OPEN REDIRECTION ATTACK EXAMPLE: <img src=??? onerror="location.replace('https://www.minecraft.net/en-us')" />
     const [value, setValue] = React.useState(defaultValue);
     
     const getValue = () => {
@@ -53,10 +51,12 @@ export default function Contact() {
         <>
             <div className="contactUs">
                 <span className="contactUsTitle">Want To Get In Contact?</span>
-                <input 
+                <span className="contactUsSubTitle">Feel free to send us your contact information and any questions you have!</span>
+                <br/>
+                <textarea 
                     value={value}
                     className="contactUsInput"
-                    placeholder="Enter username..."
+                    placeholder="First Name... &#10;Last Name... &#10;Email Address... &#10;Comments... &#10;"
                     onChange={(e) => setValue(e.target.value)}
                 />
                 <br/>
@@ -76,11 +76,12 @@ export default function Contact() {
                 {/* REDIRECTION ATTACK (FAILURE):  <img src=??? onerror="location.replace('https://www.minecraft.net/en-us')" /> */}
                 {/* DELETE ME TO TEST: <div dangerouslySetInnerHTML={{"__html": DOMPurify.sanitize(value)}} /> */}
 
-                    <button onClick={() => {
+                    <button className="contactSubmitButton" type="button" onClick={() => {
                         console.log(value);
-                    }}>Submit</button>
+                    }}><Link to="/" className="link">Submit</Link></button>
                     <br/>
-                    <button type="button" onClick={handleDownload}>Download</button>
+                    <span className="contactUsSubTitle">Or send us an email at <b>bogblogenquiries@bogblog.co.uk</b></span>
+                    <button className="contactDownloadButton" type="button" onClick={handleDownload}>Download Copy of Responses</button>
             </div>
         </>
     )

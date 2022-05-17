@@ -16,16 +16,8 @@
     font-size: 80px;
 }
 
-.registerForm {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.registerForm > label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 25px;
-    margin: 10px 0;
+.contactUsSubTitle {
+    font-size: 20px;
 }
 
 .contactUsInput {
@@ -34,9 +26,13 @@
     background-color: transparent;
     border: none;
     border-bottom: 1px solid;
+    text-align: left;
+    width: 300px;
+    height: 150px;
+    resize: none;
 }
 
-.registerButton {
+.contactSubmitButton {
     font-family: 'Shadows Into Light', cursive;
     font-size: 50px;
     margin-top: 20px;
@@ -44,16 +40,22 @@
     cursor: pointer;
     border: none;
     background-color: transparent;
+    text-decoration: none;
+    color: none;
 }
 
-.registerLoginButton {
+.contactDownloadButton {
     font-family: 'Shadows Into Light', cursive;
-    font-size: 30px;
+    font-size: 50px;
+    margin-top: 20px;
+    padding: 10px;
     cursor: pointer;
     border: none;
     background-color: transparent;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    padding: 10px;
+    text-decoration: none;
+    color: none;
+}
+
+.link {
+    color: inherit;
 }
